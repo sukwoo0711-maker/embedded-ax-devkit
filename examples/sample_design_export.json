@@ -1,0 +1,25 @@
+{
+  "document": {
+    "id": "0:0",
+    "name": "Sample UX",
+    "type": "DOCUMENT",
+    "children": [
+      {
+        "id": "1:1",
+        "name": "Wash Progress",
+        "type": "FRAME",
+        "absoluteBoundingBox": {"x": 0, "y": 0, "width": 480, "height": 272},
+        "children": [
+          {
+            "id": "1:2",
+            "name": "Remaining Time Text",
+            "type": "TEXT",
+            "characters": "45 min",
+            "absoluteBoundingBox": {"x": 120, "y": 80, "width": 120, "height": 32}
+          }
+        ]
+      }
+    ]
+  }
+}
+

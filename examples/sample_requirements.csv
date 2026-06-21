@@ -1,0 +1,6 @@
+requirement_id,category,variant,text,source_section
+REQ-WATER-001,water,STANDARD,After start, water supply shall complete within configured timeout.,STD-4.1
+REQ-WATER-001,water,REGION_A,Water supply timeout shall be 180 seconds.,PROJECT-A-2.1
+REQ-MOTOR-001,motor,STANDARD,Motor shall remain stopped during water supply phase.,STD-5.2
+REQ-UI-001,ux,STANDARD,LCD shall display remaining time while running.,UX-1.3
+

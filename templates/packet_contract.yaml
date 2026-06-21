@@ -1,0 +1,39 @@
+# 제품 firmware와 LCD S/W팀 사이의 packet 계약 template.
+packets:
+  - id: ui_status
+    direction: product_to_lcd
+    period_ms: 200
+    owner: product_firmware
+    consumer: lcd_software
+    version: 1
+    fields:
+      - name: course_id
+        offset: 0
+        type: uint8
+        unit: enum
+        source: device_state.selected_course
+        ux_consumers:
+          - SCREEN_WASH_PROGRESS.course_name
+        review_rules:
+          - "Changing enum values requires LCD S/W agreement."
+      - name: remaining_time_min
+        offset: 1
+        type: uint16
+        endian: little
+        unit: min
+        scale: 1
+        source: time_model.remaining_time_min
+        ux_consumers:
+          - SCREEN_WASH_PROGRESS.remaining_time_min
+        review_rules:
+          - "Changing unit or scale requires LCD S/W agreement."
+
+change_policy:
+  require_lcd_ack_for:
+    - field_add
+    - field_remove
+    - enum_change
+    - unit_change
+    - scale_change
+    - period_change
+

@@ -1,0 +1,22 @@
+# 결함을 AI review/eval case로 전환하는 template.
+defects:
+  - id: DEFECT-UX-001
+    title: "LCD displayed incorrect remaining time"
+    category: ux_display
+    product_variant: PRODUCT_A_REGION_A
+    symptom: "Remaining time displayed on LCD did not match product state."
+    source:
+      type: defect_export
+      file: data/raw/defects/defects.xlsx
+      row: 10
+    suspected_layers:
+      - product_firmware
+      - packet_contract
+      - lcd_software
+    root_cause: "packet field scale changed without LCD contract update"
+    missed_reason: "manual review checked value existence but not unit/scale"
+    prevention_rule: "Any packet unit/scale change must update packet_contract.yaml and UX consumer mapping."
+    eval:
+      input: "PR changes remaining_time field scale from minutes to seconds."
+      expected_finding: "MUST_FIX: LCD packet scale/unit mismatch risk."
+

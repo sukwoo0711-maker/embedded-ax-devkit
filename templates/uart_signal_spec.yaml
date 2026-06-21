@@ -1,0 +1,46 @@
+# 200 ms UART 로그 분석을 위한 signal/phase 계약 template.
+sampling:
+  expected_period_ms: 200
+  max_jitter_ms: 50
+
+signals:
+  - name: time_ms
+    type: uint32
+    unit: ms
+    required: true
+  - name: start_button
+    type: bool
+    unit: flag
+    required: true
+  - name: water_level
+    type: float
+    unit: mm
+    required: true
+    valid_range: [0, 300]
+  - name: water_valve_on
+    type: bool
+    required: true
+  - name: motor_rpm
+    type: int16
+    unit: rpm
+    required: true
+    valid_range: [-1600, 1600]
+
+phases:
+  - id: WATER_SUPPLY
+    starts_when: "start_button rises"
+    ends_when: "water_level >= target_level"
+    max_duration_ms: 180000
+    expected:
+      - "water_valve_on == 1 during phase"
+      - "motor_rpm near 0 during phase"
+  - id: MOTOR_RUN
+    starts_after: WATER_SUPPLY
+    expected:
+      - "motor_rpm follows course profile"
+
+review_rules:
+  - "Flag missing samples above max_jitter_ms."
+  - "Flag phase durations exceeding max_duration_ms."
+  - "Flag signal values outside valid_range."
+

@@ -1,0 +1,27 @@
+# 표준사양, 과제사양, 코드, UX, UART signal 연결 template.
+requirements:
+  - id: REQ-WATER-001
+    source:
+      type: standard_spec
+      file: data/processed/requirements/standard_spec.jsonl
+      row_or_section: "WATER-001"
+    text: "After start, water supply shall complete within configured timeout."
+    variants:
+      REGION_A:
+        override_source:
+          file: data/processed/requirements/project_region_a.jsonl
+          row_or_section: "WATER-REGION-A-010"
+        behavior: "timeout <= 180 s"
+      REGION_B:
+        override_source:
+          file: data/processed/requirements/project_region_b.jsonl
+          row_or_section: "WATER-REGION-B-010"
+        behavior: "timeout <= 150 s"
+    code_refs:
+      - src/control/water_control.c:WaterControl_Update
+    ux_refs:
+      - SCREEN_WASH_PROGRESS
+    uart_signals:
+      - water_level
+      - water_valve_on
+

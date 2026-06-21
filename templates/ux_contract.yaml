@@ -1,0 +1,34 @@
+# UX 화면과 firmware/LCD packet 사이의 계약 template.
+screens:
+  - id: SCREEN_WASH_PROGRESS
+    title: "Wash progress"
+    source:
+      type: "design_pdf_or_design_export"
+      file: "data/raw/ux/example.pdf"
+      page_or_node: "page-1-or-node-id"
+    states:
+      - idle
+      - running
+      - paused
+      - error
+      - complete
+    required_data:
+      - name: course_name
+        type: enum
+        owner: product_firmware
+        packet_field: ui_status.course_id
+        update_period_ms: 200
+        display_rule: "localized by LCD S/W"
+      - name: remaining_time_min
+        type: uint16
+        owner: product_firmware
+        packet_field: ui_status.remaining_time_min
+        unit: min
+        update_period_ms: 1000
+    text_limits:
+      title_chars: 16
+      body_chars: 32
+    review_rules:
+      - "Every required_data entry must map to packet_contract.yaml."
+      - "Every user-visible error state must have recovery text or action."
+

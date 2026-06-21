@@ -1,0 +1,43 @@
+# Superloop task/function 주기 계약 template.
+tasks:
+  - name: App_10ms
+    period_ms: 10
+    allowed_functions:
+      - Button_Scan
+      - Debounce_Update
+  - name: App_50ms
+    period_ms: 50
+    allowed_functions:
+      - ProgressUi_Update
+      - MotorProfile_Update
+  - name: App_100ms
+    period_ms: 100
+    forbidden_functions:
+      - ProgressUi_Update
+  - name: App_200ms
+    period_ms: 200
+    allowed_functions:
+      - UartTelemetry_Send
+
+functions:
+  - name: ProgressUi_Update
+    required_period_ms: 50
+    side_effects:
+      - updates_lcd_buffer
+    allowed_callers:
+      - App_50ms
+    forbidden_callers:
+      - App_100ms
+      - App_200ms
+  - name: UartTelemetry_Send
+    required_period_ms: 200
+    side_effects:
+      - writes_uart_tx_buffer
+    allowed_callers:
+      - App_200ms
+
+review_rules:
+  - "A function with required_period_ms must be called from an equal or faster periodic context."
+  - "Flag 50 ms required functions that are only reachable from 100 ms or slower tasks."
+  - "Timeout counter tick units must match caller period or explicitly convert units."
+

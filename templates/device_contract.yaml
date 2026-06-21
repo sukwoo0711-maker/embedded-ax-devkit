@@ -1,0 +1,40 @@
+# 제품 기능/state/action/fault 계약 template.
+product:
+  id: PRODUCT_A
+  platform: BARE_METAL_SUPERLOOP
+  base_standard_spec: STANDARD_SPEC_A
+
+variants:
+  - id: REGION_A
+    overrides:
+      - requirement_id: REQ-WATER-001
+        reason: "regional regulation"
+        behavior: "limit max water level"
+  - id: REGION_B
+    overrides:
+      - requirement_id: REQ-MOTOR-001
+        reason: "regional safety constraint"
+        behavior: "lower spin rpm"
+
+states:
+  - id: POWER_OFF
+  - id: IDLE
+  - id: COURSE_SELECTED
+  - id: RUNNING_WATER_SUPPLY
+  - id: RUNNING_MOTOR
+  - id: ERROR
+  - id: COMPLETE
+
+actions:
+  - id: START_BUTTON_PRESSED
+    allowed_from:
+      - COURSE_SELECTED
+    expected_next:
+      - RUNNING_WATER_SUPPLY
+
+faults:
+  - id: WATER_TIMEOUT
+    detection_signal: water_level
+    user_visible_screen: SCREEN_ERROR
+    recovery_action: "user_check_water_supply"
+
