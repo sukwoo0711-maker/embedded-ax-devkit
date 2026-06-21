@@ -70,6 +70,9 @@ embedded-ax-devkit/
     05-implementation-roadmap.md
     06-security-and-data-policy.md
     07-review-log.md
+    08-handoff-prompt.md
+    09-ax-use-cases.md
+    10-one-person-operating-model.md
   templates/
     ux_contract.yaml
     device_contract.yaml
@@ -95,6 +98,12 @@ embedded-ax-devkit/
 3. Local LLM은 사내 자료 질의, 요약 초안, 민감 자료 탐색에 사용한다.
 4. AI가 만든 모든 결론은 원본 사양 page, Excel row, defect id, UART timestamp로 되돌아갈 수 있어야 한다.
 5. merge 전에는 사람이 `packet_contract.yaml`, `scheduler_contract.yaml`, UART 분석 결과를 확인한다.
+
+## 내일 다른 PC에 넘길 때
+
+다른 PC의 AI에게는 [docs/08-handoff-prompt.md](docs/08-handoff-prompt.md)의 prompt를 그대로 전달한다.
+
+1인 개발자의 실제 적용 사례는 [docs/09-ax-use-cases.md](docs/09-ax-use-cases.md), 매일/매주 운영 방식은 [docs/10-one-person-operating-model.md](docs/10-one-person-operating-model.md)를 먼저 읽힌다.
 
 ## 핵심 원칙
 
