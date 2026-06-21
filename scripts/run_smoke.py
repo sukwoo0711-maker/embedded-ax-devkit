@@ -10,6 +10,8 @@ COMMANDS = [
     ["scripts/ingest_excel.py", "examples/sample_requirements.csv", "--out", "data/processed/requirements"],
     ["scripts/ingest_figma_export.py", "examples/sample_design_export.json", "--out", "data/processed/ux"],
     ["scripts/parse_uart_log.py", "examples/sample_uart.csv", "--out", "data/processed/uart"],
+    ["scripts/check_contract_links.py"],
+    ["scripts/build_defect_eval.py", "--out", "knowledge/defect_eval_cases.jsonl"],
     ["scripts/build_knowledge_index.py", "data/processed", "--out", "knowledge"],
     ["scripts/make_review_bundle.py", "--out", "knowledge/review_bundle.md"],
 ]
@@ -29,4 +31,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

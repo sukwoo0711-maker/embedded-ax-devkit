@@ -43,6 +43,8 @@ data/raw/uart/              # 200 ms UART log CSV/TXT
 python .\scripts\ingest_excel.py .\data\raw\requirements --out .\data\processed\requirements
 python .\scripts\ingest_pdf.py .\data\raw\ux --out .\data\processed\ux
 python .\scripts\parse_uart_log.py .\data\raw\uart --out .\data\processed\uart
+python .\scripts\check_contract_links.py
+python .\scripts\build_defect_eval.py
 python .\scripts\build_knowledge_index.py .\data\processed --out .\knowledge
 ```
 

@@ -5,6 +5,7 @@
 - 이 repo를 clone한다.
 - Python venv를 만든다.
 - `ax_doctor.py`를 실행한다.
+- `run_smoke.py`를 실행해 샘플 파이프라인을 검증한다.
 - 사내 자료 원문은 commit하지 않는다는 원칙을 확인한다.
 
 ## Phase 1: 1주차
@@ -62,4 +63,3 @@
 - 리팩토링 PR마다 `review_bundle.md`
 - 결함 eval 20건 통과
 - UART baseline regression report 첨부
-

@@ -24,7 +24,7 @@ Objective:
 - [x] local model/PC 제약 검토
 - [x] 1차 repo scaffold 작성
 - [x] 스크립트 smoke test
-- [ ] GitHub private repo 생성
+- [x] GitHub private repo 생성
 - [ ] 3시간 경과 후 최종 재검증
 
 ## Smoke Test
@@ -36,6 +36,8 @@ python .\scripts\ax_doctor.py
 python .\scripts\ingest_excel.py .\examples\sample_requirements.csv --out .\data\processed\requirements
 python .\scripts\ingest_figma_export.py .\examples\sample_design_export.json --out .\data\processed\ux
 python .\scripts\parse_uart_log.py .\examples\sample_uart.csv --out .\data\processed\uart
+python .\scripts\check_contract_links.py
+python .\scripts\build_defect_eval.py --out .\knowledge\defect_eval_cases.jsonl
 python .\scripts\build_knowledge_index.py .\data\processed --out .\knowledge
 python .\scripts\make_review_bundle.py --out .\knowledge\review_bundle.md
 ```
@@ -46,6 +48,13 @@ Result:
 - sample requirement CSV converted to JSONL/Markdown
 - sample design export converted to UX candidate JSON
 - sample UART CSV analyzed
+- UX required data references matched packet contract fields
+- defect template converted to eval JSONL
 - knowledge index generated
 - review bundle generated
 
+## GitHub
+
+- URL: https://github.com/sukwoo0711-maker/embedded-ax-devkit
+- Visibility: private
+- Initial commit: `6af4303 Add embedded AX devkit playbook`
